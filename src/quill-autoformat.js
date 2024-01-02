@@ -13,7 +13,7 @@ if(Quill.version && parseInt(Quill.version[0]) < 2) {
 Quill.register({
   'modules/autoformat': Autoformat,
   'formats/hashtag': Hashtag,
-  'formats/mention': Mention,
+  // 'formats/mention': Mention,
   'formats/points': Points,
   'formats/autoformat-helper': AutoformatHelperAttribute
 });
@@ -21,7 +21,7 @@ Quill.register({
 export {
   Autoformat as default,
   Hashtag,
-  Mention,
+  // Mention,
   Points,
   AutoformatHelperAttribute
 }

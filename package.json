@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/weavy/quill-autoformat#readme",
   "dependencies": {
-    "quill": ">=2.0.0-dev.3"
+    "quill": "^1.3.7"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",

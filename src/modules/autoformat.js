@@ -309,28 +309,28 @@ function transformedMatchOps(transform, result) {
 
 
 Autoformat.DEFAULTS = {
-  // hashtag: {
-  //   trigger: /[\s.,;:!?]/,
-  //   find: /(?:^|\s)#[^\s.,;:!?]+/i,
-  //   extract: /#([^\s.,;:!?]+)/i,
-  //   transform: '$1',
-  //   insert: 'hashtag',
-  //   /*helper: {
-  //     trigger: /(?:^|\s)#/,
-  //     open: function(target) {
-  //       console.log("hashtag search", target)
-  //     },
-  //     select: function(target, callback) {
-  //       callback()
-  //     },
-  //     close: function(target) {
-  //       console.log("hashtag search canceled")
-  //       if (target) {
-  //         target.innerHTML = "";
-  //       }
-  //     }
-  //   }*/
-  // },
+  hashtag: {
+    trigger: /[\s.,;:!?]/,
+    find: /(?:^|\s)#[^\s.,;:!?]+/i,
+    extract: /#([^\s.,;:!?]+)/i,
+    transform: '$1',
+    insert: 'hashtag',
+    /*helper: {
+      trigger: /(?:^|\s)#/,
+      open: function(target) {
+        console.log("hashtag search", target)
+      },
+      select: function(target, callback) {
+        callback()
+      },
+      close: function(target) {
+        console.log("hashtag search canceled")
+        if (target) {
+          target.innerHTML = "";
+        }
+      }
+    }*/
+  },
   // mention: {
   //   trigger: /[\s.,;:!?]/,
   //   find: /(?:^|\s)@[^\s.,;:!?]+/i,
@@ -345,17 +345,18 @@ Autoformat.DEFAULTS = {
     transform: '$1',
     insert: 'points'
   },
-  link: {
-    trigger: /[\s]/,
-    find: /https?:\/\/[\S]+|(www\.[\S]+)/gi,
-    transform: function (value, noProtocol) {
-      return noProtocol ? "http://" + value : value;
-    },
-    format: 'link'
-  }
+  // link: {
+  //   trigger: /[\s]/,
+  //   find: /https?:\/\/[\S]+|(www\.[\S]+)/gi,
+  //   transform: function (value, noProtocol) {
+  //     return noProtocol ? "http://" + value : value;
+  //   },
+  //   format: 'link'
+  // }
 };
 
-const AutoformatHelperAttribute = new Attributor('autoformat-helper', 'data-helper', { scope: Scope.INLINE });
+// const AutoformatHelperAttribute = new Attributor('autoformat-helper', 'data-helper', { scope: Scope.INLINE });
+const AutoformatHelperAttribute = new Attributor.Class('autoformat-helper', 'data-helper', { scope: Scope.INLINE });
 
 export {
   Autoformat as default,
