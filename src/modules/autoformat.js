@@ -51,7 +51,7 @@ class Autoformat extends Module {
       collapsed: true,
       format: ["autoformat-helper"]
     }, this.forwardKeyboardDown.bind(this));
-    
+
     this.quill.on(Quill.events.TEXT_CHANGE, (delta, oldDelta, source) => {
       let ops = delta.ops
       if (source !== 'user' || !ops || ops.length < 1) {
@@ -89,9 +89,9 @@ class Autoformat extends Module {
 
       let leafIndex = leaf.offset(leaf.scroll);
       let leafSelIndex = checkIndex - leafIndex;
-      
+
       let transformed = false;
-      
+
       // Check transforms
       for (const name in this.transforms) {
         const transform = this.transforms[name];
@@ -104,11 +104,11 @@ class Autoformat extends Module {
             continue;
           }
         }
-        
+
         // Check transform trigger
         if (lastOp.insert.match(transform.trigger || /./)) {
           this.closeHelper(transform);
-          
+
           let ops = new Delta().retain(leafIndex);
           let transformOps = makeTransformedDelta(transform, leaf.text, leafSelIndex);
 
@@ -129,7 +129,7 @@ class Autoformat extends Module {
       }
     });
   }
-  
+
   forwardKeyboard(range, context) {
     if (this.currentHelper && this.currentHelper.container) {
       let target = this.currentHelper.container.querySelector('.dropdown-menu');
@@ -137,10 +137,10 @@ class Autoformat extends Module {
       target.dispatchEvent(context.event);
     }
   }
-  
+
   forwardKeyboardUp(range, context) {
     var e = new KeyboardEvent("keydown", {
-      key: "ArrowUp", 
+      key: "ArrowUp",
       keyCode: 38,
       which: 38,
       bubbles: true,
@@ -149,10 +149,10 @@ class Autoformat extends Module {
     context.event = e;
     this.forwardKeyboard(range, context);
   }
-  
+
   forwardKeyboardDown(range, context) {
     var e = new KeyboardEvent("keydown", {
-      key: "ArrowDown", 
+      key: "ArrowDown",
       keyCode: 40,
       which: 40,
       bubbles: true,
@@ -175,8 +175,8 @@ class Autoformat extends Module {
         helperNode.style.width = pos.width + "px";
         helperNode.style.height = pos.height + "px";
         console.log("openHelper", pos, helperNode);
-        
-        
+
+
         transform.helper.container = helperNode;
         transform.helper.open(helperNode);
       }
@@ -309,35 +309,35 @@ function transformedMatchOps(transform, result) {
 
 
 Autoformat.DEFAULTS = {
-  hashtag: {
-    trigger: /[\s.,;:!?]/,
-    find: /(?:^|\s)#[^\s.,;:!?]+/i,
-    extract: /#([^\s.,;:!?]+)/i,
-    transform: '$1',
-    insert: 'hashtag',
-    /*helper: {
-      trigger: /(?:^|\s)#/,
-      open: function(target) {
-        console.log("hashtag search", target)
-      },
-      select: function(target, callback) {
-        callback()
-      },
-      close: function(target) {
-        console.log("hashtag search canceled")
-        if (target) {
-          target.innerHTML = "";
-        }
-      }
-    }*/
-  },
-  mention: {
-    trigger: /[\s.,;:!?]/,
-    find: /(?:^|\s)@[^\s.,;:!?]+/i,
-    extract: /@([^\s.,;:!?]+)/i,
-    transform: '$1',
-    insert: 'mention'
-  },
+  // hashtag: {
+  //   trigger: /[\s.,;:!?]/,
+  //   find: /(?:^|\s)#[^\s.,;:!?]+/i,
+  //   extract: /#([^\s.,;:!?]+)/i,
+  //   transform: '$1',
+  //   insert: 'hashtag',
+  //   /*helper: {
+  //     trigger: /(?:^|\s)#/,
+  //     open: function(target) {
+  //       console.log("hashtag search", target)
+  //     },
+  //     select: function(target, callback) {
+  //       callback()
+  //     },
+  //     close: function(target) {
+  //       console.log("hashtag search canceled")
+  //       if (target) {
+  //         target.innerHTML = "";
+  //       }
+  //     }
+  //   }*/
+  // },
+  // mention: {
+  //   trigger: /[\s.,;:!?]/,
+  //   find: /(?:^|\s)@[^\s.,;:!?]+/i,
+  //   extract: /@([^\s.,;:!?]+)/i,
+  //   transform: '$1',
+  //   insert: 'mention'
+  // },
   link: {
     trigger: /[\s]/,
     find: /https?:\/\/[\S]+|(www\.[\S]+)/gi,
