@@ -2,6 +2,7 @@ import Quill from 'quill';
 
 import Hashtag from './formats/hashtag';
 import Mention from './formats/mention';
+import Points from './formats/points';
 
 import Autoformat, { AutoformatHelperAttribute } from './modules/autoformat';
 
@@ -13,6 +14,7 @@ Quill.register({
   'modules/autoformat': Autoformat,
   'formats/hashtag': Hashtag,
   'formats/mention': Mention,
+  'formats/points': Points,
   'formats/autoformat-helper': AutoformatHelperAttribute
 });
 
@@ -20,5 +22,6 @@ export {
   Autoformat as default,
   Hashtag,
   Mention,
+  Points,
   AutoformatHelperAttribute
 }

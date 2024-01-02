@@ -338,6 +338,13 @@ Autoformat.DEFAULTS = {
   //   transform: '$1',
   //   insert: 'mention'
   // },
+  points: {
+    trigger: /[\s.,;:!?]/,
+    find: /(?:^|\s)\+[^\s.,;:!?]+/i,
+    extract: /\+([^\s.,;:!?]+)/i,
+    transform: '$1',
+    insert: 'points'
+  },
   link: {
     trigger: /[\s]/,
     find: /https?:\/\/[\S]+|(www\.[\S]+)/gi,
